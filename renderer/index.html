@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glep</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "../node_modules/three/build/three.module.js",
+      "three/addons/": "../node_modules/three/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+
+    <!-- ── Sidebar ─────────────────────────────────── -->
+    <aside id="sidebar">
+
+      <div id="sidebar-header">
+        <div id="app-title">glep</div>
+
+        <button id="btn-open-folder">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.75"
+               stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>
+          </svg>
+          Open Folder
+        </button>
+
+        <div id="current-path" title="">No folder selected</div>
+      </div>
+
+      <div id="file-list"></div>
+
+      <div id="sidebar-footer">
+        <span id="file-count">0 files</span>
+      </div>
+
+    </aside>
+
+    <!-- ── Resize handle ───────────────────────────── -->
+    <div id="resizer" aria-hidden="true"></div>
+
+    <!-- ── Viewer ──────────────────────────────────── -->
+    <main id="viewer">
+
+      <div id="toolbar">
+        <span id="model-name">No model loaded</span>
+        <input id="model-name-input" type="text" spellcheck="false" hidden>
+        <div id="toolbar-actions">
+          <select id="theme-picker" title="Theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="solar">Solar</option>
+          </select>
+          <label id="color-label" title="Model color">
+            <input type="color" id="color-picker" value="#3b82f6">
+          </label>
+          <button id="btn-reset-view" disabled>Reset view</button>
+        </div>
+      </div>
+
+      <div id="view-bar">
+        <span class="view-bar-label">View</span>
+        <button class="view-btn" data-view="front">Front</button>
+        <button class="view-btn" data-view="back">Back</button>
+        <button class="view-btn" data-view="right">Right</button>
+        <button class="view-btn" data-view="left">Left</button>
+        <button class="view-btn" data-view="top">Top</button>
+        <button class="view-btn" data-view="bottom">Bottom</button>
+        <div class="view-bar-sep"></div>
+        <button class="view-btn" data-view="iso">Iso</button>
+      </div>
+
+      <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+
+        <div class="overlay" id="overlay-empty">
+          <p class="overlay-title">No model selected</p>
+          <p class="overlay-sub">Choose a file from the sidebar</p>
+        </div>
+
+        <div class="overlay" id="overlay-loading" hidden>
+          <p class="overlay-title">Loading…</p>
+        </div>
+      </div>
+
+      <div id="status-bar">
+        <span id="status-text">Open a folder to get started</span>
+      </div>
+
+    </main>
+  </div>
+
+  <script type="module" src="./renderer.js"></script>
+</body>
+</html>
